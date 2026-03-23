@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LEMON — Prototipo · María Laura García</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --c1: #FF3F57;
+    --c3: #7B5CFA;
+    --lemon: #D4E84A;
+    --c4: #00C6A2;
+    --dark: #0E0E14;
+    --dark2: #18181F;
+    --muted: #9896A8;
+    --white: #FFFFFF;
+    --font-head: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; overflow: hidden; }
+  body { font-family: var(--font-body); background: var(--dark); color: var(--white); display: flex; flex-direction: column; }
+
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 2rem; flex-shrink: 0;
+    background: rgba(14,14,20,.95);
+    border-bottom: 1px solid rgba(255,255,255,.06); z-index: 10;
+  }
+  .nav-left { display: flex; align-items: center; gap: 1.5rem; }
+  .nav-logo {
+    font-family: var(--font-head); font-size: 1rem; font-weight: 800;
+    letter-spacing: -.02em;
+    background: linear-gradient(90deg, var(--c1), var(--c3));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    text-decoration: none;
+  }
+  .nav-divider { width: 1px; height: 20px; background: rgba(255,255,255,.1); }
+  .nav-title { font-size: .9rem; font-weight: 500; color: rgba(255,255,255,.7); }
+  .nav-subtitle { font-size: .75rem; color: var(--muted); margin-top: .1rem; }
+  .nav-right { display: flex; align-items: center; gap: 1rem; }
+  .nav-back {
+    font-size: .82rem; color: var(--muted); text-decoration: none;
+    display: flex; align-items: center; gap: .4rem;
+    transition: color .2s; padding: .45rem .9rem;
+    border: 1px solid rgba(255,255,255,.08); border-radius: 8px;
+  }
+  .nav-back:hover { color: var(--white); border-color: rgba(255,255,255,.2); }
+  .nav-figma {
+    font-size: .82rem; font-weight: 500;
+    color: var(--dark); text-decoration: none;
+    padding: .45rem 1.1rem;
+    background: linear-gradient(135deg, var(--lemon), var(--c4));
+    border-radius: 8px; transition: opacity .2s;
+  }
+  .nav-figma:hover { opacity: .85; }
+
+  .proto-wrapper { flex: 1; position: relative; overflow: hidden; }
+  iframe { width: 100%; height: 100%; border: none; display: block; background: var(--dark2); }
+
+  .loading {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: var(--dark); z-index: 5; gap: 1.5rem; transition: opacity .4s;
+  }
+  .loading.hidden { opacity: 0; pointer-events: none; }
+  .loading-logo {
+    font-family: var(--font-head); font-size: 3rem; font-weight: 800;
+    background: linear-gradient(135deg, var(--lemon), var(--c4));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .loading-bar { width: 200px; height: 2px; background: rgba(255,255,255,.08); border-radius: 2px; overflow: hidden; }
+  .loading-progress {
+    height: 100%; width: 0%;
+    background: linear-gradient(90deg, var(--lemon), var(--c4));
+    border-radius: 2px; animation: load 1.8s ease forwards;
+  }
+  @keyframes load { 0% { width: 0%; } 60% { width: 75%; } 100% { width: 100%; } }
+  .loading-text { font-size: .82rem; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <a href="index.html" class="nav-logo">María Laura García ✦</a>
+    <div class="nav-divider"></div>
+    <div>
+      <div class="nav-title">LEMON</div>
+      <div class="nav-subtitle">Prototipo interactivo · Figma</div>
+    </div>
+  </div>
+  <div class="nav-right">
+    <a href="lemon-casestudy.html" class="nav-back">← Ver caso de estudio</a>
+    <a href="https://www.figma.com/proto/F4MeihEwdaA1xODS3VENk9/Grupo-2---UI-Compadres--Copy-?node-id=1-2&t=DOmb5DuPI81DdsnY-1" target="_blank" class="nav-figma">Abrir en Figma ↗</a>
+  </div>
+</nav>
+
+<div class="proto-wrapper">
+  <div class="loading" id="loading">
+    <div class="loading-logo">Lemon</div>
+    <div class="loading-bar"><div class="loading-progress"></div></div>
+    <div class="loading-text">Cargando prototipo…</div>
+  </div>
+  <iframe
+    src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FF4MeihEwdaA1xODS3VENk9%2FGrupo-2---UI-Compadres--Copy-%3Fnode-id%3D1-2%26t%3DDOmb5DuPI81DdsnY-1"
+    id="proto-frame"
+    allowfullscreen
+    onload="document.getElementById('loading').classList.add('hidden')"
+  ></iframe>
+</div>
+
+<script>
+  setTimeout(() => {
+    document.getElementById('loading').classList.add('hidden');
+  }, 3000);
+</script>
+
+</body>
+</html>
